@@ -42,6 +42,9 @@ class Node(object):#helper class
                else:
                     return False
 
+     def find_leaves(self):
+
+          
 
 
 class Binary_Search_Tree(object):#main user interface
@@ -98,6 +101,8 @@ class Binary_Search_Tree(object):#main user interface
 
 
 
+
+
 #these are the tree traversals outside of objects
 def preorder(root):
 
@@ -117,7 +122,49 @@ def inorder(root):
 
      if root is not None:
           inorder(root.leftchild)
-          print root.data
+          print root.data,
           inorder(root.rightchild)
+
+#get height of binary search tree          
+def height(root):
+    
+    if root is None:
+        return -1
+    
+    return max(height(root.leftchild), height(root.rightchild)) + 1
+
+
+
+def breadth_first_traversal(root):
+#breadth or level order search using a queue class
+     
+     to_visit = [root]
+
+     while to_visit:
+          current = to_visit.pop(0) 
+
+          if current.leftchild:
+               to_visit.extend([current.leftchild])
+          if current.rightchild:
+               to_visit.extend([current.rightchild])
+          
+          print current.data,
+
+
+
+def depth_first_traversal(root):
+#depth first search using a stack, i.e. popping from list
+     to_visit = [root]
+
+     while to_visit:
+          current = to_visit.pop() 
+
+          if current.leftchild:
+               to_visit.extend([current.leftchild])
+          if current.rightchild:
+               to_visit.extend([current.rightchild])
+          
+          print current.data,
+
 
 
