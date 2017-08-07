@@ -43,6 +43,26 @@ class Node(object):#helper class
                     return False
 
      def find_leaves(self):
+          #depth first to find all of the leaf nodes s
+          to_visit = [self]
+          leaves = []
+
+          while to_visit:
+
+               current = to_visit.pop()
+
+               if current.leftchild is None and current.rightchild is None:
+                    leaves.append(current.data)
+
+               if current.leftchild:
+                    to_visit.extend([current.leftchild])
+
+               if current.rightchild:
+                    to_visit.extend([current.rightchild])
+
+          return leaves
+          #use breadth or depth first and when we come to a node where there's
+          #no data add it to a list of leaves
 
           
 
@@ -99,6 +119,17 @@ class Binary_Search_Tree(object):#main user interface
           else:
                return False 
 
+
+     def find_leaves(self):
+
+          if self.root:
+               print self.root
+               return self.root.find_leaves()
+          else:
+               return False
+
+     def is_valid(self):
+          pass
 
 
 
