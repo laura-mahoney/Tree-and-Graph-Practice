@@ -64,9 +64,44 @@ class Node(object):#helper class
           #use breadth or depth first and when we come to a node where there's
           #no data add it to a list of leaves
 
-          
+#there are several ways to check if a Binary Tree is a valid Binary Search Tree
+#one method is an inorder traversal making sure that current node is always smaller
+#than previous node
+#other method is to use recursion
+     def is_valid(self):
+
+          def _ok(n, lt, gt):
+               """ check this node and recurse to children"""
+               if n is None:
+               #base case: this is not a node 
+                    return True
+
+               if lt is not None and n.data > lt:
+                #base case: left node is greater than current node
+                    return False
+
+               if gt is not None and n.data < gt:
+                #base base: right node is less than current node
+                    return False 
+
+               if not _ok(n.leftchild, n.data, gt):
+                #passing the left node in as the new node, recursively checking all lefts
+                #all data on the left has to be less than n.data and greater than successive nodes
+                    return False 
+
+               if not _ok(n.rightchild, lt, n.data):
+                #pass the right node in as the new node, recursively checking all rights
+                #all data on the left has to be less than n.data
+                    return False
 
 
+
+               return True 
+
+          return _ok(self, None, None)
+
+
+#this is the tree class
 class Binary_Search_Tree(object):#main user interface
 
      def __init__(self, root=None):
@@ -128,11 +163,6 @@ class Binary_Search_Tree(object):#main user interface
           else:
                return False
 
-     def is_valid(self):
-          pass
-
-
-
 
 #these are the tree traversals outside of objects
 def preorder(root):
@@ -164,6 +194,15 @@ def height(root):
     
     return max(height(root.leftchild), height(root.rightchild)) + 1
 
+
+def depth(root):
+
+     if root is None:
+        return 0
+    
+     return max(depth(root.leftchild), depth(root.rightchild)) + 1
+
+  
 
 
 def breadth_first_traversal(root):
