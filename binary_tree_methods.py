@@ -165,6 +165,7 @@ class Binary_Search_Tree(object):#main user interface
 
 
 #these are the tree traversals outside of objects
+#including the iterative versions as well
 def preorder(root):
 
      if root is not None:
@@ -178,6 +179,34 @@ def postorder(root):
           postorder(root.leftchild)
           postorder(root.rightchild)
           print root.data,
+
+#this uses two stacks, one to iterate over values added to it
+#the other 
+def postorder_iterative(root):
+
+     to_visit = [root]
+     seen = []
+
+     while to_visit:
+
+          curret = to_visit[-1]
+          if current in seen:
+               print current.data
+               to_visit.pop()
+          else:
+               if currnt.rightchild:
+                    to_visit.append(rightchild)
+                    seen.append(current.rightchild)
+               if current.leftchild:
+                    to_visit.append(leftchild)
+                    seen.append(current.leftchild)
+
+          if current.leftchild is None and root.righthchild is None:
+               print current.data
+               to_visit.pop()
+
+ 
+
 
 def inorder(root):
 
@@ -214,9 +243,9 @@ def breadth_first_traversal(root):
           current = to_visit.pop(0) 
 
           if current.leftchild:
-               to_visit.extend([current.leftchild])
+               to_visit.append(current.leftchild)
           if current.rightchild:
-               to_visit.extend([current.rightchild])
+               to_visit.append(current.rightchild)
           
           print current.data,
 
@@ -230,9 +259,9 @@ def depth_first_traversal(root):
           current = to_visit.pop() 
 
           if current.leftchild:
-               to_visit.extend([current.leftchild])
+               to_visit.append(current.leftchild)
           if current.rightchild:
-               to_visit.extend([current.rightchild])
+               to_visit.append(current.rightchild)
           
           print current.data,
 
