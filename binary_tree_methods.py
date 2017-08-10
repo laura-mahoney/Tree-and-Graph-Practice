@@ -173,6 +173,7 @@ def preorder(root):
           preorder(root=root.leftchild)
           preorder(root=root.rightchild)
 
+#check the left children first, then p
 def postorder(root):
 
      if root is not None:
@@ -205,8 +206,6 @@ def postorder_iterative(root):
                print current.data
                to_visit.pop()
 
- 
-
 
 def inorder(root):
 
@@ -214,6 +213,9 @@ def inorder(root):
           inorder(root.leftchild)
           print root.data,
           inorder(root.rightchild)
+
+
+def inorder_iterative(root):
 
 #get height of binary search tree          
 def height(root):
